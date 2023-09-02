@@ -1,0 +1,12 @@
+[Unit]
+Description = Update root.hints file for unbound
+Requires = unbound.service
+
+[Timer]
+User = root
+OnCalendar = *-*-* 05,17:45
+RandomizedDelaySec = 5m
+Persistent = true
+
+[Install]
+WantedBy = timers.target

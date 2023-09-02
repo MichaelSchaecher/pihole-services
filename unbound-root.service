@@ -3,8 +3,8 @@ Description  =  Update root.hints file for unbound
 After = network.target
 
 [Service]
-Environment = "URL = https://www.internic.net/domain/named.root"
-Environment = "DEST_FILE = /var/lib/unbound/root.hints"
+Environment = "URL=https://www.internic.net/domain/named.root"
+Environment = "DEST_FILE=/var/lib/unbound/root.hints"
 ExecStart = /usr/bin/curl -o "${DEST_FILE}" "${URL}"
 ExecStartPost = /bin/systemctl reload unbound.service
 

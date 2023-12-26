@@ -1,0 +1,16 @@
+# This is for if Pihole and Unbound is installed on a Raspberry Pi.
+# Since the Raspberry Pi uses an SD-Card for system install logging
+# to ram is better to prevent to many writes to disc.
+
+[Unit]
+Description = Enable the logging file for unbound
+After = log2ram.service
+
+[Service]
+Environment = "UNBOUND_LOG=/var/log/unbound/unbound.log"
+ExecStartPre = /usr/bin/touch "$UNBOUND_LOG"
+ExecStart = /usr/bin/chown unbound "$UNBOUND_LOG"
+ExecStartPost = /bin/systemctl reload unbound.service
+
+[Install]
+WantedBy = default.target
